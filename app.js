@@ -1,0 +1,13 @@
+const express = require('express');
+const parser = require('body-parser');
+const passengerRoute = require('./routes/passengers');
+const driverRoute = require('./routes/drivers');
+const cabRoute = require('./routes/cabdetails');
+const bookingRoute = require('./routes/booking');
+const app = express();
+app.use(parser.urlencoded({extended:true}));
+app.use("/api",passengerRoute);
+app.use("/api",driverRoute);
+app.use("/api",cabRoute);
+app.use("/api",bookingRoute);
+app.listen(80);
