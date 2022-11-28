@@ -1,7 +1,7 @@
 const db = require('../models/driver');
 let id
 
-module.exports.getALL = (req,res,next) => {
+module.exports.getAll = (req,res,next) => {
     db.findAll()
     .then(result => {
         res.json(result);

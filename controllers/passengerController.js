@@ -1,67 +1,120 @@
 //const { validationResult, body } = require('express-validator');
 const { where } = require('sequelize');
 const db = require('../models/passengers');
-let id
 
-module.exports.getAll = (req,res,next) => {
-    db.findAll()
-    .then(result => {
-        res.json(result);
-    })
+module.exports.register = (req, res, next) => 
+{
+    res.render('register');
 }
 
-module.exports.getOne = (req,res,next) => {
-  id = req.params.id;
-  console.log(id);
-  db.findByPk(id).then(user=>
-    {
-        res.status(user==null?404:200);
-        res.json(user);
+module.exports.registerPost = async (req,res,next) => {
+    const {firstName, lastName, password , email, mobile, dob, gender } = req.body;
+    let existingUser = await db.findOne({
+        where: {email: email, password: password}
     });
-}
 
-module.exports.addOne = (req,res,next) => {
-    // const errors = validationResult(req);
-    // if(!errors.isEmpty())
-    // {
-    //     return res.status(400)
-    //     .json({
-    //         errors: errors.array()
-    //     });
-    // }
-
-    db.create(
-        {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        password: req.body.password,
-        email: req.body.email,
-        mobile: req.body.mobile,
-        dob: req.body.dob,
-        gender: req.body.gender
-    })
-    .then((user)=>
+    if(existingUser)
     {
-        res.json(user);
+        return res.render('register',{message:'Already Registered.'});
+    }
+
+    await db.create(
+        {
+        firstName: firstName,
+        lastName: lastName,
+        password: password,
+        email: email,
+        mobile: mobile,
+        dob: dob,
+        gender: gender
     })
+    
+    res.redirect('/login');
 
 }
 
-module.exports.updateOne = (req,res,next)=>
+module.exports.login = (req,res,next) => 
+{
+    res.render("login")
+}
+
+module.exports.loginpost = async (req,res,next) =>
+{
+    // console.log("In login post");
+    const {email, password} = req.body;
+    const passengerFromDb = await db.findOne({
+        where: {email: email, password:password}
+    });
+
+    if(passengerFromDb == null)
+    {
+        return res.render('login',{message: 'No user with this email or password was found'});
+    }
+   
+        req.session.passengerId = passengerFromDb.Passenger_id;
+        res.redirect('/passenger');
+ 
+    
+
+}
+
+module.exports.passengerDetail =  (req,res,next) =>
+{
+   
+    res.render('passengerProfile',{data: req.identity.passenger})   
+}
+
+module.exports.updatePassenger = async(req,res,next) =>
+{
+    db.findByPk(req.identity.passenger.id)
+    .then(passengerFromDb => 
+        {
+            res.render('updatePassenger',
+            {
+                heading : 'Update Profile',
+                data:passengerFromDb
+            });
+        });
+}
+
+module.exports.updatePassengerPost = async (req,res,next)=>
+{
+    await db.update({
+        firstName : req.body.firstName,
+        lastName : req.body.lastName,
+        email : req.body.email,
+        password : req.body.password,
+        mobile : req.body.mobile
+    },
+    {
+        where : {
+            Passenger_id : req.identity.passenger.id
+        }
+    }
+    )
+    res.redirect('/home');
+}
+
+
+
+module.exports.delete = async (req,res,next) => 
 {
 
-    db.update({where: id=req.params.id},
-        {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        password: req.body.password,
-        email: req.body.email,
-        mobile: req.body.mobile,
-        dob: req.body.dob,
-        gender: req.body.gender
-    })
-    .then((user)=>
+    let id = req.identity.passenger.id;
+    let passengerFromDb = await db.findByPk(id);
+    if(passengerFromDb != null)
     {
-        res.json(user)
-    })
+        await db.destroy({
+            where:
+            {
+                Passenger_id:id
+            }
+        });
+        res.redirect('/login');
+    }
+}
+
+module.exports.homePage = (req,res,next)=>
+{
+    return res.render('home');
 }

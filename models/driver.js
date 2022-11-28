@@ -7,31 +7,31 @@ const Driver = db.sequelize.define('driver',{
         autoIncrement : true,
         primaryKey : true
     },
-    driver_Licenece_No : {
+    driverLiceneceNo : {
         type : DataTypes.INTEGER,
         allowNull:false
     },
-    driver_Name : {
+    driverName : {
         type : DataTypes.STRING(50),
         allowNull : false
     },
-    driver_Password : {
+    driverPassword : {
         type : DataTypes.STRING(50),
         allowNull : false
     },
-    driver_Email : {
+    driverEmail : {
         type : DataTypes.STRING(50),
         allowNull:false,
         unique:true
     },
-    driver_address:
+    driverAddress:
     {
         type : DataTypes.STRING(50)
     },
-    driver_dob : {
+    driverDob : {
         type: DataTypes.DATE
     },
-    driver_Gender:{
+    driverGender:{
         type : DataTypes.STRING(7),
         allowNull:false
     }

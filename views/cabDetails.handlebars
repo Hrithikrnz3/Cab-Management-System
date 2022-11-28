@@ -1,0 +1,28 @@
+<h1 class="text-center">Available Cabs</h1>
+<div class="container">
+    
+    <table class="table table-striped mt-4">
+        <tr>
+            <th>Cab name</th>
+            <th>Description</th>
+            <th>Capacity</th>
+
+            
+        </tr>
+        {{#each cabDetails}}
+                <tr>
+            <td>{{this.dataValues.cabName}}</td>
+            <td>{{this.dataValues.cabDescription}}</td>
+            <td>{{this.dataValues.cabTotalCapacity}}</td>
+            <td>
+                <a href="/home">Book now</a>
+            </td>
+        </tr>
+
+        {{/each}}
+       
+    </table>
+    <p class="text-end">You are logged in as: 
+        <b>{{data.firstName}} {{data.lastName}}</b>
+    </p>
+</div>

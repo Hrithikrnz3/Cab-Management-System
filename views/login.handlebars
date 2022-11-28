@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="/static/login.css" type="text/css">
+<div class="container">
+        <div class="login-section" >
+            <h3 id="login-text">Login</h3>
+            <form id="loginform" name="loginform" method="post">
+                <div class="login">
+                    <input type="email" placeholder="Email address" id="email" name="email" required/>
+                </div>
+                <div class="alert-danger" id="error-messages"></div>
+                <br/>
+                <div class="login">
+                    <input type="password" placeholder="password" id="password" name="password" minlength='8' required  />
+                </div>
+                <div class="alert-danger" id="pass-error-messages"></div>
+                <br/>
+              
+                <br/>
+                <div class="login">
+                    <button type="submit" id="signin">SIGN IN</button>
+                    {{#if message}}
+                    <p class="text-danger">{{message}}</p>
+                    {{/if}}
+                </div>
+                <div class="login">
+                    <p id="member">Not a member? <a href="register.handlebars" id="register">Register</a></p>
+                </div>
+            </form>
+        </div>
+       </div>

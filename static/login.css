@@ -1,0 +1,55 @@
+body{
+    background-color: beige;
+    margin: 0px;
+}
+.login-section{
+    background-color: white;
+    margin-top: 100px;
+    margin-left: 360px;
+    margin-right:500px;
+    padding-left: 27px;
+    padding-right: 5px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    width: 400px;
+    height: 300px;
+    border-radius: 20px;
+    
+}
+
+.mid-container{
+    
+    margin-left: 20px;
+
+}
+#right{
+    margin-left: 80px;
+}
+#email{
+    margin-top: 20px;
+    width: 350px;
+    height: 35px;
+
+}
+#password{
+    width: 350px;
+    height:35px;
+}
+#signin{
+    width: 350px;
+    height: 33px;
+    background-color: #04AA6D;
+    border: 0px;
+    color: white;
+    font-weight: bold;
+   
+}
+#member{
+    padding-left: 80px;
+}
+  #login-text{
+    padding-left: 140px;
+  }
+.alert-danger{
+    color: red;
+}
