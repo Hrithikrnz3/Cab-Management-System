@@ -1,46 +1,37 @@
 const db = require('../models/booking')
+const cabDb = require('../models/cabDetails');
 
-// module.exports.getAll = (req,res,next) => 
-// {
-//     db.findAll()
-//     .then(result => {
-//         res.json(result);
-//     })
-// }
+module.exports.booking = (req,res,next)=>
+{
+    res.render('booking');
+}
 
-// module.exports.getOne = (req,res,next) => {
-//     id = req.params.id;
-//     db.findByPk(id).then(user => 
-//         {
-//             res.status(user==null?404:200);
-//             res.json(user);
-//         })
-// }
+module.exports.bookingPost = async (req,res,next)=>
+{
+    var driverId;
+    const{pickUp,drop, date, time} = req.body;
+    cabDb.findByPk(req.params.cabNo).then((result)=>
+    {
+       db.create({
+        dateOfBooking : date,
+        cabFrom : pickUp,
+        cabTo : drop,
+        bookingTime : time,
+        passengerId : req.identity.passenger.id,
+        cabNo : req.params.cabNo,
+        driverId : result.driverId,
+        cost:5000
+       })
+    })
+    
+    res.redirect('/payment/'+req.params.cabNo);
+}
 
-// module.exports.addOne = (req,res,next) =>
-// {
-//     db.create(
-//         {
-//             dateOfBooking : req.body.dateOfBooking,
-//             cabFrom : req.body.cabFrom,
-//             cabTo : req.body.cabTo,
-//             bookingTime : req.body.bookingTime,
-//             cabNo : req.body.cabNo,
-//             cost : req.body.cost,
-//             passengerId : req.body.passengerId,
-//             driverId : req.body.driverId
-//         }).then((user)=>
-//         {
-//             res.json(user)
-//         })
-// }
-
-// module.exports.booking = (req,res,next) =>
-// {
-//     res.render('booking');
-// }
-
-// module.exports.bookingPost = (req,res,next) => 
-// {
-//     const {dateOFBooking,cabFrom,cabTo,bookingTime,cabNo,cost,passengerId,driverId}
-// }
+module.exports.payment = async (req,res,next) =>
+{
+    var paymentDetails = await db.findOne({where : {cabNo : req.params.cabNo}});
+    res.render('payment',
+    {
+        data : paymentDetails
+    })
+}
