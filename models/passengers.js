@@ -36,6 +36,10 @@ const passenger = db.sequelize.define('Passenger',{
     gender :  {
         type : DataTypes.STRING(7),
         allowNull : false
+    },
+    role : {
+        type : DataTypes.INTEGER,
+        defaultValue : 0
     }
 
 

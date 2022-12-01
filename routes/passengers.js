@@ -1,6 +1,8 @@
 const express = require('express');
 const pc = require('../controllers/passengerController');
 const router = express.Router('{}');
+
+
 // router.get('/passenger',pc.getAll);
 // router.get('/passenger/:id',pc.getOne);
 router.get('/register',pc.register);
@@ -15,4 +17,6 @@ router.get('/delete',pc.delete);
 // router.get('/update/:id',pc.update);
 // router.post('/update/:id',pc.updatePost);
 // router.get('delete/:id',pc.delete);
+
+
 module.exports = router;;

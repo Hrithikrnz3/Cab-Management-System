@@ -35,3 +35,8 @@ module.exports.payment = async (req,res,next) =>
         data : paymentDetails
     })
 }
+
+module.exports.paymentInvoice = (req,res,next) =>
+{
+    res.render('bookingInvoice');
+}

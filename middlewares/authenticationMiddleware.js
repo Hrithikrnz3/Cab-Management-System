@@ -11,7 +11,6 @@ module.exports = async (req,res,next) => {
     }
     let passengerId = req.session.passengerId;
     console.log(passengerId)
-    // console.log('🚗🚗🚗🚗')
     if(!passengerId  || passengerId == null){
         return res.redirect("/login");
     }
@@ -31,7 +30,7 @@ module.exports = async (req,res,next) => {
         email: passengerFromDb.dataValues.email,
         mobile:passengerFromDb.dataValues.mobile,
         dob:passengerFromDb.dataValues.dob,
-        role:'passenger'
+        role : passengerFromDb.dataValues.role
     }
     next()
 }
