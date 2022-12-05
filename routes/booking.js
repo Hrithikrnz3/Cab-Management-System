@@ -4,8 +4,8 @@ const router = express.Router({});
 
 router.get('/booking/:cabNo',bc.booking);
 router.post('/booking/:cabNo',bc.bookingPost);
-router.get('/payment/:cabNo',bc.payment);
-router.get('/paymentInvoice',bc.paymentInvoice);
+router.get('/payment/:bookingId',bc.payment);
+router.get('/paymentInvoice/:bookingId',bc.paymentInvoice);
 
 module.exports = router;
 

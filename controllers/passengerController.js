@@ -58,6 +58,12 @@ module.exports.loginpost = async (req,res,next) =>
 
 }
 
+module.exports.logout = (req,res,next) => 
+{
+    req.session.passengerId = null;
+    return res.redirect('/login');
+}
+
 module.exports.passengerDetail =  (req,res,next) =>
 {
    

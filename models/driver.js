@@ -17,7 +17,8 @@ const Driver = db.sequelize.define('driver',{
     },
     driverPassword : {
         type : DataTypes.STRING(50),
-        allowNull : false
+        allowNull : true,
+        defaultValue : null
     },
     driverEmail : {
         type : DataTypes.STRING(50),

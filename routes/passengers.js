@@ -9,6 +9,7 @@ router.get('/register',pc.register);
 router.post('/register',pc.registerPost);
 router.get('/login',pc.login);
 router.post('/login',pc.loginpost);
+router.get('/logout',pc.logout);
 router.get('/passenger',pc.passengerDetail);
 router.get('/home',pc.homePage);
 router.get('/update',pc.updatePassenger);
