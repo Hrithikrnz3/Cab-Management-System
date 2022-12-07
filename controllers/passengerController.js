@@ -67,7 +67,7 @@ module.exports.logout = (req,res,next) =>
 module.exports.passengerDetail =  (req,res,next) =>
 {
    
-    res.render('passengerProfile',{data: req.identity.passenger})   
+    res.render('passengerProfile',{profile: req.identity.passenger})   
 }
 
 module.exports.updatePassenger = async(req,res,next) =>
@@ -78,7 +78,9 @@ module.exports.updatePassenger = async(req,res,next) =>
             res.render('updatePassenger',
             {
                 heading : 'Update Profile',
-                data:passengerFromDb
+                data:passengerFromDb,
+                profile: req.identity.passenger
+                
             });
         });
 }
@@ -98,7 +100,7 @@ module.exports.updatePassengerPost = async (req,res,next)=>
         }
     }
     )
-    res.redirect('/home');
+    res.redirect('/login');
 }
 
 

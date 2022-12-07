@@ -9,7 +9,7 @@ const booking = db.sequelize.define('bookingDetails',
         primaryKey : true
     },
     dateOfBooking : {
-        type : DataTypes.DATE,
+        type : DataTypes.DATEONLY,
         allowNull : false
     },
     cabFrom : {

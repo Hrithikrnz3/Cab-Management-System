@@ -31,7 +31,7 @@ const passenger = db.sequelize.define('Passenger',{
         allowNull : false
     },
     dob : { 
-        type : DataTypes.DATE
+        type : DataTypes.DATEONLY
     },
     gender :  {
         type : DataTypes.STRING(7),

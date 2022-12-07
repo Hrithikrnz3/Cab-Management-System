@@ -1,0 +1,18 @@
+a{
+    text-decoration: none;
+    
+}
+
+.editBtn {
+    color: black;
+}
+.deleteBtn {
+    color : white;
+}
+.leftContainer{
+   margin-top: 40px; 
+    margin-right: 570px;
+}
+#profile{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}

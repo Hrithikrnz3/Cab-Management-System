@@ -6,17 +6,15 @@ module.exports.booking = async (req,res,next)=>
 {
     var route = await routeCostDb.findAll()
     res.render('booking',{
-        data: route
+        data: route,
+        profile : req.identity.passenger
     });
 }
 
 module.exports.bookingPost =  (req,res,next)=>
 {
     const{pickUp,drop, date, time} = req.body;
-    console.log("🛴🛴🛴🛴🛴🛴🛴🛴🛴");
-
-    console.log(req.body.pickUp);
-    console.log(req.body.drop);
+    
     routeCostDb.findOne({
         where : {
             from : req.body.pickUp,
@@ -36,7 +34,6 @@ module.exports.bookingPost =  (req,res,next)=>
             driverId : cabDetails.driverId,
             cost:result.cost
            }).then(result => {
-            console.log("🚉🚉🚉🚉🚉🚉🚉🚉")
             res.redirect('/payment/'+result.bookingId);
         })
         })
@@ -50,7 +47,8 @@ module.exports.payment = async (req,res,next) =>
     var paymentDetails = await db.findOne({where : {bookingId : req.params.bookingId}});
     res.render('payment',
     {
-        data : paymentDetails
+        data : paymentDetails,
+        profile:req.identity.passenger
     })
 }
 
@@ -72,9 +70,52 @@ module.exports.paymentInvoice = async (req,res,next) =>
                 res.render('bookingInvoice',{
                     invoice : result,
                     passengerName : name,
-                    cost:newResult.cost
+                    cost:newResult.cost,
+                    profile : req.identity.passenger
                 })
             })
             
         })
 }
+
+module.exports.viewBooking = (req, res, next) => {
+
+    db.findAll().then(result => {
+        res.render('viewBookings',{
+            data :  result,
+            profile : req.identity.passenger
+        } )
+
+    })
+    
+}
+
+module.exports.sreachBookingByDate = async (req, res, next)=>{
+    date = req.body.date
+    allbookings = await db.findAll({
+        where : {
+            dateOfBooking : date
+        }
+    }
+        
+    )
+
+    if (allbookings.length != 0) {
+        res.render('viewBookings',{
+            data : allbookings
+        })
+        
+    }
+    else{
+         let isFound = 1;
+         db.findAll().then(result => 
+            {
+                res.render('viewBookings',{
+                    data : result,
+                    found : isFound
+                })
+            })
+
+    }
+}
+

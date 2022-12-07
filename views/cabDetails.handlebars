@@ -1,6 +1,6 @@
 <h1 class="text-center">Available Cabs</h1>
 <div class="container">
-    {{#if data.role}}
+    {{#if profile.role}}
     <a href="/addCab">
     <button class="btn btn-primary">Add Cab</button>
     </a>
@@ -13,7 +13,7 @@
 
             
         </tr>
-       {{#if data.role}}
+       {{#if profile.role}}
        {{#each cabDetails}}
        <tr>
          <td>{{this.dataValues.cabName}}</td>
@@ -40,7 +40,4 @@
         {{/each}}
        {{/if}}
     </table>
-    <p class="text-end">You are logged in as: 
-        <b>{{data.firstName}} {{data.lastName}}</b>
-    </p>
 </div>
