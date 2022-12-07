@@ -1,28 +1,25 @@
-body{
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin: 0px;
-}
+
 .header{
-    color:  black;   
+    color: rgb(255, 255, 255);  
     padding-top: 11px;; 
-    padding-left: 340px;
+    padding-left: 410px;
     font-weight: bold;
     font-size: 23px;
+   
 }
 .mid-container{
-    background-color: antiquewhite;
+    background-color: rgb(245, 245, 245, 0.4);
     margin-top: 60px;
-    margin-left: 750px;
-    padding-left: 50px;
-    padding-right: 5px;
+    margin-left: 330px;
+    padding-left: 30px;
+    padding-right: 15px;
     padding-top: 20px;
     padding-bottom: 20px;
-    width: 400px;
-    height: 300px;
+    width: 480px;
+    height: 340px;
     border-radius: 20px;
 }
-#pickup{
+/* #pickup{
     width: 350px;
     height:35px;
 }
@@ -38,7 +35,7 @@ body{
 #time{
     width: 170px;
     height:35px;
-}
+} */
 #passenger{
     width: 350px;
     height:35px;
@@ -56,3 +53,19 @@ body{
   .alert-danger{
     color: red;
   }
+
+  body {
+    background-image: url('destination4.webp');
+    background-repeat: none;
+    background-size: cover;
+    
+  }
+  h2{
+    font-family: Arial, Helvetica, sans-serif;
+
+  }
+  #bookNow 
+  {
+    margin-left: 150px;
+  }
+ 

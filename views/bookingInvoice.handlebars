@@ -31,5 +31,13 @@
             <td>{{cost}}</td>
         </tr>
     </table>
-    <button class="btn btn-success">Print pdf</button>
+    <button class="btn btn-success" id="printBtn" onClick="printPdf()">Print</button>
 </div>
+<script>
+    const btn = document.getElementById('printBtn');
+    function printPdf()
+    {
+        btn.style.display = "none";
+        return window.print()
+    }
+</script>

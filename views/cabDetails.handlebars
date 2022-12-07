@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/static/cabDetails.css" type="text/css">
 <h1 class="text-center">Available Cabs</h1>
 <div class="container">
     {{#if profile.role}}
@@ -5,11 +6,12 @@
     <button class="btn btn-primary">Add Cab</button>
     </a>
     {{/if}}
-    <table class="table table-striped mt-4">
+    <table class="table table-striped table-dark  mt-4">
         <tr>
             <th>Cab name</th>
             <th>Description</th>
             <th>Capacity</th>
+            <th></th>
 
             
         </tr>
@@ -33,7 +35,8 @@
             <td>{{this.dataValues.cabDescription}}</td>
             <td>{{this.dataValues.cabTotalCapacity}}</td>
             <td>
-                <a href="/booking/{{this.dataValues.cabNo}}">Book now</a>
+                <button class="btn btn-warning"><a href="/booking/{{this.dataValues.cabNo}}">Book now</a></button>
+                
             </td>
         </tr>
 

@@ -1,6 +1,10 @@
 a{
     text-decoration: none;
     
+    
+}
+a:hover {
+    color: rgb(193, 193, 43);
 }
 
 .editBtn {
@@ -11,8 +15,23 @@ a{
 }
 .leftContainer{
    margin-top: 40px; 
-    margin-right: 570px;
+    margin-right: 80px;
+    margin-left: 80px;
 }
 #profile{
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+#edit {
+    margin-left: 400px;width: 70px;
+
+}
+#delete {
+    margin-left: 120px;
+}
+#cabDetails {
+    color: white;
+
+}
+#cabBtn {
+ margin-left: 135px;
 }

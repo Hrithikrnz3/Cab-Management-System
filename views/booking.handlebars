@@ -1,35 +1,38 @@
 <link rel="stylesheet" href="/static/booking.css" type="text/css">
   <div class="container">
             <div class="header">
-                <h2 >Book a city Taxi to your destination in town</h1>
+                <h2>BOOK YOUR TAXI</h2>
             </div>
             <div class="mid-container">
-            <form method="post" type="form">
-                <label for = "pickUp" type="form-control">Pick Up</label>
-                <select name="pickUp" id="pickUp" type="form-control">
-                    {{#each data}}
+            <form method="post">
+
+                <label for = "pickUp">Pick Up</label>
+                <select name="pickUp" id="pickUp" class="form-control">
+                    {{#each pickup}}
                     <option value="{{this.dataValues.from}}">{{this.dataValues.from}}</option>
                     {{/each}}
                 </select>
-                <br/>
+            
                 <label for = "drop">Drop</label>
-                <select name="drop" id="drop" type="form-control">
+                <select name="drop" id="drop" class="form-control">
                     {{#each data}}
                     <option value="{{this.dataValues.to}}">{{this.dataValues.to}}</option>
                     {{/each}}
                 </select>
                 <div class="alert-danger" id="location"></div>
-                <br/>
+                
                 <div id="dateDiv">
-                    <input type="date" id="date" placeholder="pick-up date" name="date">
+                    <label for = "date">Date</label>
+                    <input type="date" id="date" placeholder="pick-up date" name="date" class="form-control">
                 </div>
-                <br/>
+                
                 <div id="timeDiv">
-                    <input type="time" id="time" placeholder="pick-up time" name="time">
+                    <label for = "time">Time</label>
+                    <input type="time" id="time" placeholder="pick-up time" name="time" class="form-control">
                 </div>
-                <br/>
+                <br>
                 <div id="searchDiv">
-                    <button type="submit" id="bookNow">Book Now</button>
+                    <button type="submit" id="bookNow" class="btn btn-primary">Book Now</button>
                 </div>
             </form>    
             </div>

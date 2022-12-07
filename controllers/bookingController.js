@@ -1,14 +1,30 @@
 const db = require('../models/booking')
 const cabDb = require('../models/cabDetails');
-const routeCostDb = require('../models/routeCost'); 
+const routeCostDb = require('../models/routeCost');
+const sequelize = require('sequelize');
+
 
 module.exports.booking = async (req,res,next)=>
 {
     var route = await routeCostDb.findAll()
-    res.render('booking',{
-        data: route,
-        profile : req.identity.passenger
-    });
+    // res.render('booking',{
+    //     data: route,
+    //     profile : req.identity.passenger
+    // });
+
+    routeCostDb.findAll( {
+        attributes : [
+            [sequelize.fn('DISTINCT', sequelize.col('from')) ,'from'],
+        ]
+
+    }).then(result=>{
+        res.render('booking', {
+            data: route,
+            pickup : result,
+            profile : req.identity.passenger
+        });
+
+    })
 }
 
 module.exports.bookingPost =  (req,res,next)=>

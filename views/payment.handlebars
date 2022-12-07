@@ -1,20 +1,33 @@
+<link rel="stylesheet" href="/static/payment.css" type="text/css">
 <div class="container-fluid">
-<table class="table">
+<br/>
+<br/>
+<br/>
+
+<div class="tableContainer" style = "display:flex; justify-content:center;">
+    <div style = "display:flex; justify-content:center;">
+    <table class="table table-bordered table-striped table-dark" style = "width:45vw;" id="paymentTable">
     <tr>
         <th>From</th>
-        <th>To</th>
-        <th>Cost</th>
+        <td>{{data.dataValues.cabFrom}}</td>
     </tr>
     <tr>
-        <td>{{data.dataValues.cabFrom}}</td>
-        <td>{{data.dataValues.cabTo}}</td>
-        <td>{{data.dataValues.cost}}</td>
-        <td>
-            <a href="/paymentInvoice/{{data.dataValues.bookingId}}">
-                <button class="btn btn-success">Pay Now</button>
-            </a>
-        </td>
-
+        <th>To</th>
+        <td>{{data.dataValues.cabTo}}</td> 
     </tr>
-</table>
+        <th>Cost</th>
+        <td>{{data.dataValues.cost}}</td>
+   </table>
+   <br>
+   
+</div>
+</div>
+<div style= "display:flex; justify-content:center;"">
+<div>
+    <a href="/paymentInvoice/{{data.dataValues.bookingId}}">
+        <button class="btn btn-success">Pay Now</button>
+    </a>
+  </div>
+</div>
+
 </div>
