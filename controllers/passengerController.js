@@ -35,12 +35,13 @@ module.exports.registerPost = async (req,res,next) => {
 
 module.exports.login = (req,res,next) => 
 {
+    
     res.render("login")
 }
 
 module.exports.loginpost = async (req,res,next) =>
 {
-    // console.log("In login post");
+    
     const {email, password} = req.body;
     const passengerFromDb = await db.findOne({
         where: {email: email, password:password}
@@ -52,6 +53,7 @@ module.exports.loginpost = async (req,res,next) =>
     }
    
         req.session.passengerId = passengerFromDb.Passenger_id;
+        req.session.role = 1;
         res.redirect('/passenger');
  
     
@@ -63,15 +65,15 @@ module.exports.logout = (req,res,next) =>
     req.session.passengerId = null;
     return res.redirect('/login');
 }
-
 module.exports.passengerDetail =  (req,res,next) =>
 {
+    
    
     res.render('passengerProfile',{profile: req.identity.passenger})   
 }
-
 module.exports.updatePassenger = async(req,res,next) =>
 {
+    
     db.findByPk(req.identity.passenger.id)
     .then(passengerFromDb => 
         {
@@ -84,9 +86,9 @@ module.exports.updatePassenger = async(req,res,next) =>
             });
         });
 }
-
 module.exports.updatePassengerPost = async (req,res,next)=>
 {
+    
     await db.update({
         firstName : req.body.firstName,
         lastName : req.body.lastName,
@@ -104,12 +106,12 @@ module.exports.updatePassengerPost = async (req,res,next)=>
 }
 
 
-
 module.exports.delete = async (req,res,next) => 
 {
-
+    
     let id = req.identity.passenger.id;
     let passengerFromDb = await db.findByPk(id);
+
     if(passengerFromDb != null)
     {
         await db.destroy({

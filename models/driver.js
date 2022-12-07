@@ -30,7 +30,7 @@ const Driver = db.sequelize.define('driver',{
         type : DataTypes.STRING(50)
     },
     driverDob : {
-        type: DataTypes.DATE
+        type: DataTypes.DATEONLY
     },
     driverGender:{
         type : DataTypes.STRING(7),
